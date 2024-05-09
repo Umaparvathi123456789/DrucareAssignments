@@ -17,7 +17,7 @@ public class ConstructorOverLoaded {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ConstructorOverLoaded obj=new ConstructorOverLoaded();
-	
+		ConstructorOverLoaded obj=new ConstructorOverLoaded(10);
 	}
 
 }
