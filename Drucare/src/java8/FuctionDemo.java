@@ -10,7 +10,7 @@ public interface FuctionDemo {
         System.out.println("Uppercase result: " + result);
 
         Function<Integer, Integer> squareFunction = x -> x * x;
-
+        System.out.println(squareFunction);
         // Apply the function
         int squareResult = squareFunction.apply(5);
         System.out.println("Square result: " + squareResult);
