@@ -4,6 +4,7 @@ import java.util.function.BiConsumer;
 
 public interface BiConsumerDemo {
     public static void main(String[] args) {
+    	System.out.println();
 
 	   BiConsumer<Integer, Integer> biConsumer = (Integer x, Integer y) -> {
            int result = x + y;
