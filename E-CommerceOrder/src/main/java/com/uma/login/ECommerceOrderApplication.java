@@ -13,7 +13,7 @@ public class ECommerceOrderApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ECommerceOrderApplication.class, args);
 		
-        LOGGER.log(Level.INFO, "Welcome to E-Commerce Order Microservice");
+        LOGGER.log(Level.INFO, "Welcome to E-Commerce  Microservice");
 
 	}
 }
