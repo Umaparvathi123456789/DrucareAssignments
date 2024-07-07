@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: E-CommerceOrder
+  datasource:
+    url: jdbc:mysql://localhost:3306/E-Commerce
+    username: root
+    password: Veera@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  doc:
+    api-docs:
+      path: /api-docs
+server:
+  port: 8081
