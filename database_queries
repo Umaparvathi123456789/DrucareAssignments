@@ -1,0 +1,271 @@
+--creating table 1 header table
+CREATE TABLE list_of_companys (
+    company_id BIGSERIAL PRIMARY KEY,        
+    company_nm VARCHAR(255) NOT NULL,           
+    registration_num VARCHAR(50),      
+    address VARCHAR(255),             
+    city VARCHAR(100),                   
+    state VARCHAR(100),                  
+    postal_code VARCHAR(20),            
+    country VARCHAR(100),                
+    phone VARCHAR(20),                   
+    email VARCHAR(255) UNIQUE,          
+    website VARCHAR(255),                
+    industry VARCHAR(100),              
+    num_of_emp INT,             
+    founded_dt DATE,                   
+    ceo_nm VARCHAR(255),                
+    revenue DECIMAL(15, 2),             
+    description TEXT,                      
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,   
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,	
+	ended_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+);
+--Inserting Multiple Records into table 1
+INSERT INTO list_of_companys (company_nm, registration_num, address, city, state, postal_code, country, phone, email, website, industry, num_of_emp, founded_dt, ceo_nm, revenue, description)
+VALUES 
+	('Drucare1', 'REG0012345', 'Plot No 45, B2', 'Hyderabad', 'Telangana', '500084', 'India', '040-12345678', 'infotech@drucare.com', 'http://www.drucare.com', 'Healthcare Technology', 200, '2016-03-20', 'Sudhir Suryadevara',5000000.00, 'Drucare is a technology-driven company offering healthcare solutions.'),
+	('Tata Consultancy Services1', 'REG0023456', 'TCS House, Raveline Street', 'Mumbai', 'Maharashtra', '400001', 'India', '022-67789999', 'infotech@tcs.com', 'http://www.tcs.com', 'Information Technology', 469261, '1968-04-01', 'Rajesh Gopinathan', 22000000000.00, 'Tata Consultancy Services is a global leader in IT services, consulting & business solutions.'),
+	('Wipro1', 'REG0045678', 'Doddakannelli, Sarjapur Road', 'Bangalore', 'Karnataka', '560035', 'India', '080-28440011', 'infotech@wipro.com', 'http://www.wipro.com', 'Information Technology', 180000, '1945-12-29', 'Thierry Delaporte', 8800000000.00, 'Wipro Limited is a leading global information technology, consulting, and business process services company.'),
+	('HCL Technologies1', 'REG0056789', 'HCL Technologies, A-10/11, Sector-3', 'Noida', 'Uttar Pradesh', '201301', 'India', '0120-4380000', 'infotect@hcl.com', 'http://www.hcltech.com', 'Information Technology', 159000, '1976-11-12', 'C Vijayakumar', 10000000000.00, 'HCL Technologies is an Indian multinational IT services and consulting company.'),
+	('Infosys1', 'REG0034567', 'Electronics City Phase 1', 'Bangalore', 'Karnataka', '560100', 'India', '080-28520261', 'infotech@infosys.com', 'http://www.infosys.com', 'Information Technology', 259619, '1981-07-02', 'Salil Parekh', 13500000000.00, 'Infosys is a global leader in next-generation digital services and consulting.'),
+	('Tech Innovators Inc.1', 'REG123456', '123 Innovation Drive', 'Tech City', 'Innovation State', '12345', 'Techland', '555-123-4567', 'infotech@techinnovators.com', 'http://www.techinnovators.com', 'Technology', 500, '2001-05-15', 'Jane Doe', 25000000.00, 'A leading innovator in tech solutions.'),
+	('Google LLC1', 'GOOGL12345', '1600 Amphitheatre Parkway', 'Mountain View', 'CA', '94043', 'USA', '650-253-0000', 'contactid@google.com', 'http://www.google.com', 'Technology', 135301, '1998-09-04', 'Sundar Pichai', 182500000000.00, 'American multinational technology company.'),
+	('Amazon.com, Inc.1', 'AMZN123456', '410 Terry Ave. North', 'Seattle', 'WA', '98109', 'USA', '206-266-1000', 'contactid@amazon.com', 'http://www.amazon.com', 'E-commerce', 798000, '1994-07-05', 'Andy Jassy', 469800000000.00, 'American multinational technology company focusing on e-commerce, cloud computing, and AI.'),
+	('Microsoft Corporation1', 'MSFT123456', 'One Microsoft Way', 'Redmond', 'WA', '98052', 'USA', '425-882-8080', 'contactid@microsoft.com', 'http://www.microsoft.com', 'Technology', 181000, '1975-04-04', 'Satya Nadella', 168100000000.00, 'American multinational technology company producing computer software, consumer electronics, and personal computers.'),
+	('Apple Inc.1', 'AAPL123456', 'One Apple Park Way', 'Cupertino', 'CA', '95014', 'USA', '408-996-1010', 'contactid@apple.com', 'http://www.apple.com', 'Technology', 147000, '1976-04-01', 'Tim Cook', 274515000000.00, 'American multinational technology company specializing in consumer electronics, software, and online services.'),
+	('Facebook, Inc.1', 'FB123456', '1 Hacker Way', 'Menlo Park', 'CA', '94025', 'USA', '650-543-4800', 'contactid@fb.com', 'http://www.facebook.com', 'Social Media', 58604, '2004-02-04', 'Mark Zuckerberg', 85965000000.00, 'American social media conglomerate corporation.')
+
+--creating table 2 child table
+CREATE TABLE company_projects (
+    project_id BIGSERIAL PRIMARY KEY,        
+    company_id  BIGSERIAL NOT NULL,           
+    project_nm VARCHAR(255) NOT NULL,    
+    description TEXT,               
+    project_start_dt DATE,              
+    project_end_dt DATE,                  
+    project_budget DECIMAL(15, 2),          
+    project_status VARCHAR(50),            
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP , 
+	ended_at Date ,
+    FOREIGN KEY (company_id) REFERENCES list_of_companys(company_id)  
+);
+--Inserting Multiple Records into table 2
+INSERT INTO company_projects (company_id, project_nm,description, project_start_dt, project_end_dt, project_budget, project_status)
+VALUES
+    (8, 'Project Alpha', 'A high-priority project focused on developing new technology solutions.', '2023-01-15', '2023-12-31', 500000.00, 'Ongoing'),
+    (7, 'Project Beta', 'A research project aimed at improving data analytics capabilities.', '2023-03-01', '2024-02-28', 750000.00, 'Ongoing'),
+    (36, 'Project Gamma', 'A project to upgrade existing infrastructure and improve efficiency.', '2023-05-10', NULL, 300000.00, 'On Hold'),
+    (35, 'Project Delta', 'A new market expansion project into South East Asia.', '2023-07-20', '2024-07-19', 1000000.00, 'Ongoing'),
+    (34, 'Project Epsilon', 'A strategic initiative to enhance customer engagement through digital channels.', '2023-09-01', '2024-03-31', 200000.00, 'Completed'),
+	(33, 'Project Alpha', 'A high-priority project focused on developing new technology solutions.', '2023-01-15', '2023-12-31', 500000.00, 'Ongoing'),
+    (32, 'Project Beta', 'A research project aimed at improving data analytics capabilities.', '2023-03-01', '2024-02-28', 750000.00, 'Ongoing'),
+    (31, 'Project Gamma', 'A project to upgrade existing infrastructure and improve efficiency.', '2023-05-10', NULL, 300000.00, 'On Hold'),
+    (30, 'Project Delta', 'A new market expansion project into South East Asia.', '2023-07-20', '2024-07-19', 1000000.00, 'Ongoing');
+
+--creating table 2 child table
+CREATE TABLE projects (
+    project_id BIGSERIAL PRIMARY KEY,
+    project_nm VARCHAR(255) NOT NULL,
+    start_dt DATE,
+    end_dt DATE,
+    budget NUMERIC(15, 2),
+    status VARCHAR(50),
+    description TEXT
+);
+--Inserting Multiple Records into table 3
+INSERT INTO projects (project_nm, description, start_dt, end_dt, budget, status)
+values
+( 'Project Alpha', 'A high-priority project focused on developing new technology solutions.', '2023-01-15', '2023-12-31', 500000.00, 'Ongoing'),
+    ( 'Project Beta', 'A research project aimed at improving data analytics capabilities.', '2023-03-01', '2024-02-28', 750000.00, 'Ongoing'),
+    ( 'Project Gamma', 'A project to upgrade existing infrastructure and improve efficiency.', '2023-05-10', NULL, 300000.00, 'On Hold'),
+    ( 'Project Delta', 'A new market expansion project into South East Asia.', '2023-07-20', '2024-07-19', 1000000.00, 'Ongoing'),
+    ( 'Project Epsilon', 'A strategic initiative to enhance customer engagement through digital channels.', '2023-09-01', '2024-03-31', 200000.00, 'Completed'),
+	( 'Project Alpha', 'A high-priority project focused on developing new technology solutions.', '2023-01-15', '2023-12-31', 500000.00, 'Ongoing'),
+    ( 'Project Beta', 'A research project aimed at improving data analytics capabilities.', '2023-03-01', '2024-02-28', 750000.00, 'Ongoing'),
+    ( 'Project Gamma', 'A project to upgrade existing infrastructure and improve efficiency.', '2023-05-10', NULL, 300000.00, 'On Hold'),
+    ( 'Project Delta', 'A new market expansion project into South East Asia.', '2023-07-20', '2024-07-19', 1000000.00, 'Ongoing');
+--
+ALTER TABLE list_of_companys ADD CONSTRAINT unique_email UNIQUE (email);
+ALTER TABLE list_of_companys ADD CONSTRAINT unique_company_nm UNIQUE (company_nm);
+ALTER TABLE list_of_companysALTER COLUMN email SET NOT NULL;
+--
+CREATE INDEX idx_company_email ON list_of_companys(email);
+--
+CREATE VIEW company_details AS SELECT company_id, company_nm, city, state, country, revenue FROM list_of_companys;
+--all select queries
+--selct with filters
+SELECT * FROM public.company_projects;
+--
+SELECT * FROM public.projects ORDER BY project_id ASC ; -- OR DESC
+SELECT * FROM public.projects ORDER BY project_id;
+SELECT * FROM list_of_companys WHERE country = 'India' AND num_of_emp > 1000;
+--
+SELECT * FROM public.projects;
+--
+SELECT * FROM public.projects ORDER BY project_id ASC ; -- OR DESC
+SELECT * FROM public.projects ORDER BY project_nm;
+--
+SELECT * FROM public.list_of_companys;
+SELECT company_nm, email,city,address,registration_num,state,postal_code FROM list_of_companys;
+--
+SELECT * FROM public.list_of_companys ORDER BY company_id ASC ; -- OR DESC
+SELECT * FROM public.list_of_companys ORDER BY company_nm;
+SELECT  string_agg(company_id::text,',')AS company_id_according_to_project_nm from company_projects where project_nm='Project Alpha';
+SELECT  company_id,project_nm,string_agg(project_status,',')AS status_of_projects from company_projects where project_nm='Project Alpha' GROUP BY company_id ,project_nm ORDER BY company_id;
+
+--selct with filters,Rank,Dense Rank,index,view
+SELECT * FROM list_of_companys WHERE country = 'India' AND state='CA'OR industry='Technology';
+SELECT company_nm FROM list_of_companys WHERE country = 'India' OR state='CA' OR city='Hyderabad';
+--
+SELECT company_id, company_nm, revenue, RANK() OVER (ORDER BY revenue DESC) AS revenue_rank FROM list_of_companys;
+SELECT company_id, company_nm,  RANK() OVER (ORDER BY num_of_emp ASC ) AS employee_rank FROM list_of_companys;
+--
+SELECT company_id, company_nm, revenue, DENSE_RANK() OVER (ORDER BY revenue DESC) AS revenue_dense_rank FROM list_of_companys;
+
+--string_agg,concat,replace and round
+SELECT STRING_AGG(company_nm, ', ') AS names FROM list_of_companys;
+SELECT company_id,address ,string_agg(company_nm, ', ') AS company_names FROM list_of_companys GROUP BY company_id,address ORDER BY company_nm;
+--
+SELECT company_id, CONCAT(company_nm, ' - ', city, ', ', state) AS company_info FROM list_of_companys;
+SELECT DISTINCT company_id,website, string_agg(CONCAT(company_nm, ' - ', city, ', ', state,' ,',address,' ,', revenue,':-',description),' ,') AS company_details FROM list_of_companys GROUP BY company_id,website ORDER BY company_id;
+SELECT company_id, string_agg(CONCAT(company_nm, ' - ', city, ', ', state,' ,',', ',postal_code,', ',website,',',address,' ,', revenue,':',description),' ,') AS company_details FROM list_of_companys GROUP BY company_id ORDER BY company_id;
+--
+SELECT company_id,city, REPLACE(company_nm, '1', '2') AS updated_company_nm FROM list_of_companys GROUP BY company_id,city ORDER BY company_id;
+SELECT company_id, ROUND(revenue, 8) AS rounded_revenue FROM list_of_companys;
+--
+SELECT string_agg(concat(city,' ', company_nm),',') AS city_names, REPLACE(city,'Mountain','chennai')AS replaced_nm , ROUND(revenue, 2) AS rounded_revenue from list_of_companys GROUP BY city, company_nm, revenue, address, state ORDER BY company_nm;
+SELECT company_id,string_agg(company_nm, ', ') AS aggregated_company_names,       
+      CONCAT(company_nm, ' - ', city, ', ', state) AS company_info,  
+      REPLACE(company_nm, '1', '4') AS updated_company_name,  
+      ROUND(revenue, 2) AS rounded_revenue
+FROM list_of_companys GROUP BY company_id, company_nm, city, state, revenue ORDER BY company_id;
+
+--Aggregation Queries, Operators
+SELECT loc.city,COUNT(loc.city) AS num_of_cities FROM list_of_companys loc GROUP BY loc.city;
+SELECT project_nm, COUNT(*) AS project_name FROM company_projects GROUP BY project_nm ORDER BY project_name;
+SELECT COUNT(*) AS total_companies, AVG(revenue) AS average_revenue FROM list_of_companys;
+SELECT company_nm,COUNT(*) AS total_companies, AVG(revenue) AS average_revenue FROM list_of_companys GROUP BY company_id;
+--
+SELECT company_id,industry, AVG(revenue) AS average_revenue FROM list_of_companys GROUP BY company_id,industry HAVING AVG(revenue) > 500000000;
+--
+SELECT string_agg(company_nm,', ') AS all_names ,
+REPLACE(concat(city,', ',company_nm,' ,',revenue),'Mumbai','Bombay ')AS company_details ,round(1000000.000,2 ) AS revenue ,address,state  
+FROM list_of_companys GROUP BY city, company_nm, revenue, address, state ORDER BY company_nm;
+--
+SELECT company_id, company_nm, revenue * 1.10+100000000000/2 AS increased_revenue FROM list_of_companys;
+SELECT c.company_id,c.company_nm, c.description,c.num_of_emp +12 AS increased_employees FROM list_of_companys c ORDER BY increased_employees DESC;
+--
+SELECT loc.company_id, loc.company_nm, (SELECT COUNT(*) FROM company_projects cp WHERE cp.company_id = loc.company_id) AS project_count FROM list_of_companys loc;
+
+--Joints And Sub Queries
+
+SELECT DISTINCT  p.project_id,p.description,p.status, string_agg(p.project_nm,',') as project_name
+from projects p left join  company_projects cp on cp.project_id=p.project_id  where p.status='Ongoing' 
+GROUP BY  p.project_id,p.description,p.status ;
+
+SELECT loc.company_nm, SUM(cp.project_budget) AS total_budget FROM list_of_companys loc JOIN company_projects cp ON loc.company_id = cp.company_id GROUP BY loc.company_nm;
+SELECT loc.company_nm,concat(loc.city,', ',loc.state,', ',loc.address) AS company_address ,SUM(cp.project_budget) AS total_budget FROM list_of_companys loc JOIN company_projects cp ON loc.company_id = cp.company_id GROUP BY loc.company_nm,company_address ORDER BY total_budget;
+--
+SELECT cp.project_nm, loc.company_nm, cp.project_start_dt, cp.project_end_dt FROM company_projects cp JOIN list_of_companys loc ON cp.company_id = loc.company_id;
+SELECT loc.company_nm, COUNT(cp.project_id) AS project_count FROM list_of_companys loc LEFT JOIN company_projects cp ON loc.company_id = cp.company_id GROUP BY loc.company_nm;
+--
+SELECT cp.project_id, cp.project_nm, cp.description AS project_description, cp.project_status, lc.company_id,lc.country, lc.description AS company_description 
+FROM company_projects cp JOIN list_of_companys lc ON cp.company_id = lc.company_id;
+--
+SELECT p.project_id, p.project_nm, p.start_dt AS project_start_date, p.status AS project_status, p.description AS project_description, cp.company_id, lc.company_nm 
+FROM projects p LEFT JOIN company_projects cp ON p.project_id = cp.project_id
+LEFT JOIN list_of_companys lc ON cp.company_id = lc.company_id;
+--
+SELECT loc.company_nm,loc.city, SUM(cp.project_budget) AS total_budget FROM list_of_companys loc JOIN company_projects cp ON loc.company_id = cp.company_id GROUP BY loc.city,loc.company_nm order by total_budget;
+SELECT loc.company_nm, COUNT(cp.project_id) AS num_of_projects FROM list_of_companys loc JOIN company_projects cp ON loc.company_id = cp.company_id GROUP BY loc.company_nm;
+--
+
+SELECT loc.*, cp.project_nm,cp.ended_at, cp.description,cp.project_nm FROM list_of_companys loc JOIN company_projects cp ON loc.company_id = cp.company_id;
+SELECT cp.*,loc.company_nm, cp.project_nm, cp.project_status FROM list_of_companys loc JOIN company_projects cp ON loc.company_id = cp.company_id WHERE cp.project_status='Ongoing';
+SELECT loc.company, AVG(p.project_budget) AS average_budget FROM list_of_companys c JOIN company_projects p ON c.company_id = p.company_id GROUP BY c.name;
+--
+SELECT string_agg(concat(loc.city, ', ', loc.company_nm, ', ', loc.revenue, ', ', loc.address, ', ', loc.state), ',') AS company_details,
+ replace(loc.city, 'Mumbai', 'Hyderabad') AS new_named_companys FROM list_of_companys loc
+LEFT JOIN company_projects cp ON loc.company_id = cp.company_id
+LEFT JOIN projects p ON cp.project_id = p.project_id
+GROUP BY loc.city, loc.company_nm, loc.revenue, loc.address, loc.stateORDER BY loc.revenue;
+--
+SELECT string_agg(concat(loc.company_nm, ', ', loc.city,' ',loc.state), ', ') AS company_details, loc.revenue FROM list_of_companys loc
+join(select cp.project_id,cp.company_id,project_nm from company_projects cp where cp.project_status='Ongoing'  ) as project_details on project_details.company_id=loc.company_id 
+join (select p.project_id,p.project_nm from projects p ) as p on  p.project_id=project_details.project_id  
+where loc.city='Hyderabad' group by loc.revenue,project_details.company_id,p.project_nm;
+
+--Select specific columns from both tables:
+SELECT loc.company_nm, cp.project_nm, cp.project_start_dt FROM list_of_companys loc JOIN company_projects cp ON loc.company_id = cp.company_id WHERE loc.country = 'India';
+
+--Inner Join: Projects and Companies
+SELECT cp.project_id, cp.project_nm, cp.description, cp.project_nm AS company_name FROM company_projects cp INNER JOIN list_of_companys loc ON cp.company_id = loc.company_id;
+
+--Left Join: All Projects and Their Companies
+SELECT cp.project_id, cp.project_nm, cp.description, cp.project_nm AS company_name FROM company_projects cp LEFT JOIN list_of_companys loc ON cp.company_id = loc.company_id;
+
+--Right Join: All Companies and Their Projects
+SELECT loc.company_nm AS company_name, cp.project_nm, cp.description FROM list_of_companys loc RIGHT JOIN company_projects cp ON loc.company_id = cp.company_id;
+
+--Full Join: All Projects and All Companies
+SELECT loc.company_nm AS company_name, cp.project_nm, cp.description FROM list_of_companys loc FULL OUTER JOIN company_projects cp ON loc.company_id = cp.company_id;
+
+--Sub queries,DATE functions
+SELECT loc.company_id, loc.company_nm, (SELECT COUNT(*) FROM company_projects cp WHERE cp.company_id = loc.company_id) AS project_count FROM list_of_companys loc;
+SELECT company_nm FROM list_of_companys WHERE revenue > (SELECT AVG(revenue) FROM list_of_companys);
+--
+SELECT project_nm, project_budget FROM company_projects WHERE project_budget > (SELECT AVG(project_budget) FROM company_projects);
+--
+SELECT sub.company_nm, sub.total_projects FROM  (SELECT loc.company_nm, COUNT(cp.project_id) AS total_projects 
+FROM list_of_companys loc LEFT JOIN company_projects cp ON loc.company_id = cp.company_id GROUP BY loc.company_nm) sub WHERE sub.total_projects > 1;
+--
+SELECT company_id, company_nm, EXTRACT(YEAR FROM founded_dt) AS founded_year FROM list_of_companys;
+SELECT company_id, company_nm, EXTRACT(MONTH  FROM ended_at) AS founded_month FROM list_of_companys;
+SELECT company_id, company_nm,  EXTRACT(YEAR FROM founded_dt) AS founded_year,EXTRACT(MONTH FROM founded_dt) AS founded_month  FROM list_of_companys WHERE company_nm='Drucare';
+
+--
+--Updating queries
+UPDATE list_of_companys SET phone = '040-12345679', city='ongole'WHERE company_nm = 'Wipro';
+UPDATE list_of_companys SET industry = 'Tech', city='ongole' ,country='india', state='Telangana' WHERE country = 'Techland' OR company_nm ='Wipro';
+UPDATE company_projects SET project_status = 'end' WHERE project_nm = 'Project Delta';
+UPDATE list_of_companys SET ended_at = NULL;
+--sub query
+UPDATE list_of_companys SET revenue = (SELECT AVG(revenue) FROM list_of_companys WHERE city = 'Hyderabad') WHERE city = 'ongole';
+update projects set end_dt=null where status='Ongoing';
+update list_of_companys set updated_at =null ;
+update company_projects set project_end_dt=null where project_status='Ongoing';
+-- case,else,end
+UPDATE list_of_companys SET industry= CASE WHEN revenue > 10000000000 THEN 'Information Technology' WHEN revenue BETWEEN 6000000 AND 10000000000 THEN 'Technology' ELSE 'Healthcare Technology' END;
+
+--Delete a single record
+DELETE FROM list_of_companys WHERE name = 'Company one';
+
+--Delete multiple records
+DELETE FROM list_of_companys WHERE country = 'Tech city' AND number_of_employees < 200;
+DELETE FROM list_of_companys WHERE id IN (1, 3, 5);
+
+-- grant and revoke
+GRANT SELECT, INSERT ON list_of_companys TO companys;
+REVOKE SELECT, INSERT ON companys TO list_of_companys;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
